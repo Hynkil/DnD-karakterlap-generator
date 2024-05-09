@@ -17,7 +17,7 @@ def apply_race_bonus(race):
     if race == 'Night Elf':
         return {'Dexterity': 2}
     elif race == 'Human':
-        return {'Charisma': 2}
+        return {stat: 1 for stat in ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']}
     else:
         return {}
 
