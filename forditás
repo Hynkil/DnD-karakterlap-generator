@@ -1,0 +1,56 @@
+import random
+
+character_sheet = {}
+
+def generate_stats():
+    stats = {
+        'Strength': random.randint(3, 18),
+        'Dexterity': random.randint(3, 18),
+        'Constitution': random.randint(3, 18),
+        'Intelligence': random.randint(3, 18),
+        'Wisdom': random.randint(3, 18),
+        'Charisma': random.randint(3, 18)
+    }
+    return stats
+
+def create_character_sheet(name, character_class):
+    stats = generate_stats()
+    
+    character_sheet['Név'] = name
+    character_sheet['Osztály'] = character_class
+    character_sheet['Statisztika'] = stats
+
+def display_character_sheet():
+    print("\nKarakterlap:")
+    print("Név:", character_sheet['Név'])
+    print("Osztály:", character_sheet['Osztály'])
+    print("Statisztika:")
+    for stat, value in character_sheet['Statisztika'].items():
+        print(stat + ':', value)
+
+def main_menu():
+    print("\nMenü:")
+    print("1. Karakterlap készítése")
+    print("2. Karakterlap megjelenítése")
+    print("3. Kilépés")
+    choice = input("Add meg a lehetőséget: ")
+    return choice
+
+def main():
+    while True:
+        choice = main_menu()
+        
+        if choice == '1':
+            name = input("Add meg a karakter nevét: ")
+            character_class = input("Add meg a karakter osztályát: ")
+            create_character_sheet(name, character_class)
+        elif choice == '2':
+            display_character_sheet()
+        elif choice == '3':
+            print("Programból kilépés...")
+            break
+        else:
+            print("Helytelen lehetőség. Kérlek próbáld meg újra.")
+
+if __name__ == '__main__':
+    main()
