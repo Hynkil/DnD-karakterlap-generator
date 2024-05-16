@@ -35,6 +35,8 @@ def apply_race_bonus(race):
          return {'Constitution': 2}
      elif race == 'Mountain Dwarf':
          return {'Strength': 2}
+     elif race == 'Hill Dwarf':
+         return {'Wisdom': 1}
      else:
          return{}
 
@@ -74,7 +76,7 @@ def main():
         if choice == '1':
             name = input("Enter character name: ")
             character_class = input("Enter character class: ")
-            race = input("Enter character race (Night Elf, Human, etc.): ")
+            race = input("Enter character race (Elf, Night Elf, Wood Elf, Halflings, Lightfoot, Scout, Dwarf, Mountain Dwarf, Hill Dwarf, Human): ")
             create_character_sheet(name, character_class, race)
         elif choice == '2':
             display_character_sheet()
