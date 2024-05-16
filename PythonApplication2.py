@@ -20,25 +20,25 @@ def apply_race_bonus(race):
     if race == 'Human':
         return {stat: 1 for stat in ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']}
     elif race == 'Elf':
-         return {'Dexterity': 2}
-     elif race == 'High Elf':
-         return {'Intelligence': 1}
-     elif race == 'Wood Elf':
-         return {'Intelligence': 1}
-     elif race == 'Halflings':
-         return {'Dexterity': 2}
-     elif race == 'Lightfoot':
-         return {'Charisma': 1}
-     elif race == 'Stout':
-         return {'Constitution': 1}
-     elif race == 'Dwarf':
-         return {'Constitution': 2}
-     elif race == 'Mountain Dwarf':
-         return {'Strength': 2}
-     elif race == 'Hill Dwarf':
-         return {'Wisdom': 1}
-     else:
-         return{}
+        return {'Dexterity': 2}
+    elif race == 'High Elf':
+        return {'Intelligence': 1}
+    elif race == 'Wood Elf':
+        return {'Intelligence': 1}
+    elif race == 'Halflings':
+        return {'Dexterity': 2}
+    elif race == 'Lightfoot':
+        return {'Charisma': 1}
+    elif race == 'Stout':
+        return {'Constitution': 1}
+    elif race == 'Dwarf':
+        return {'Constitution': 2}
+    elif race == 'Mountain Dwarf':
+        return {'Strength': 2}
+    elif race == 'Hill Dwarf':
+        return {'Wisdom': 1}
+    else:
+        return{}
 
 def create_character_sheet(name, character_class, race):
     stats = generate_stats()
