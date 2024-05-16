@@ -6,77 +6,46 @@ def generate_stats():
     stats = {
         'Strength': random.randint(3, 18),
         'Dexterity': random.randint(3, 18),
-        #ügyesség
         'Constitution': random.randint(3, 18),
-        #állóképesség
         'Intelligence': random.randint(3, 18),
         'Wisdom': random.randint(3, 18),
-        #bölcsesség
         'Charisma': random.randint(3, 18)
     }
     return stats
 
 def apply_race_bonus(race):
-    if race == 'Human':
-        bonus = {stat: 1 for stat in ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']}
-        if input("Do you want to choose a subspecies (yes/no)? ") == 'yes':
-            subspecies = input("Choose a subspecies: (Calishite, Damarai, Forest, or Mountains) ")
-            if subspecies == 'Calishite':
-                bonus['Charisma'] += 1
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Damarai':
-                bonus['Strength'] += 1
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Forest':
-                bonus['Dexterity'] += 1
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Mountains':
-                bonus['Constitution'] += 1
-                bonus['Subspecies'] = subspecies
+    race_bonuses = {
+        'Human': {
+            'Calishite': {'Charisma': 1},
+            'Damarai': {'Strength': 1},
+            'Forest': {'Dexterity': 1},
+            'Mountains': {'Constitution': 1}
+        },
+        'Elf': {
+            'High Elf': {'Intelligence': 1},
+            'Wood Elf': {'Wisdom': 1},
+            'Dark Elf': {'Dexterity': 1}
+        },
+        'Halflings': {
+            'Lightfoot': {'Charisma': 1},
+            'Stout': {'Constitution': 1}
+        },
+        'Dwarf': {
+            'Mountain Dwarf': {'Strength': 1},
+            'Hill Dwarf': {'Wisdom': 1}
+        }
+    }
+    if race in race_bonuses:
+        bonus = race_bonuses[race]
+        subspecies = input("Do you want to choose a subspecies (yes/no)? ").lower()
+        if subspecies == 'yes':
+            chosen_subspecies = input(f"Choose a subspecies: {', '.join(bonus.keys())}: ")
+            if chosen_subspecies in bonus:
+                return bonus[chosen_subspecies]
             else:
-                print("Invalid subspecies choice. Defaulting to base Human bonuses.")
-        return bonus
-    elif race == 'Elf':
-        bonus = {stat: 2 for stat in ['Dexterity']}
-        if input("Do you want to choose a subspecies (yes/no)? ") == 'yes':
-            subspecies = input("Choose a subspecies: (High Elf or Wood Elf) ")
-            if subspecies == 'High Elf':
-                bonus['Intelligence'] += 1
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Wood Elf':
-                bonus['Intelligence'] += 1
-                bonus['Subspecies'] = subspecies
-            else:
-                print("Invalid subspecies choice. Defaulting to base Elf bonuses.")
-        return bonus
-    elif race == 'Halflings':
-        bonus = {stat: 2 for stat in ['Dexterity']}
-        if input("Do you want to choose a subspecies (yes/no)? ") == 'yes':
-            subspecies = input("Choose a subspecies: (Lightfoot or Stout) ")
-            if subspecies == 'Lightfoot':
-                bonus['Charisma'] += 1
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Stout':
-                bonus['Constitution'] += 1
-                bonus['Subspecies'] = subspecies
-            else:
-                print("Invalid subspecies choice. Defaulting to base Halflings bonuses.")
-        return bonus
-    elif race == 'Dwarf':
-        bonus = {stat: 2 for stat in ['Constitution']}
-        if input("Do you want to choose a subspecies (yes/no)? ") == 'yes':
-            subspecies = input("Choose a subspecies: (Mountain Dwarf or Hill Dwarf) ")
-            if subspecies == 'Mountain Dwarf':
-                bonus['Strength'] += 2
-                bonus['Subspecies'] = subspecies
-            elif subspecies == 'Hill Dwarf':
-                bonus['Wisdom'] += 1
-                bonus['Subspecies'] = subspecies
-            else:
-                print("Invalid subspecies choice. Defaulting to base Dwarf bonuses.")
-        return bonus
-    else:
-        return{}
+                print("Invalid subspecies choice. Defaulting to base race bonuses")
+        return {'Subspecies': ''}
+    return {}
 
 def create_character_sheet(name, character_class, race):
     stats = generate_stats()
@@ -117,7 +86,7 @@ def main():
         if choice == '1':
             name = input("Enter character name: ")
             character_class = input("Enter character class: ")
-            race = input("Enter character race (Elf, Human, Halflings, Dwarf): ")
+            race = input("Enter character race (Human, Elf, Halflings, Dwarf): ")
             create_character_sheet(name, character_class, race)
         elif choice == '2':
             display_character_sheet()
