@@ -47,7 +47,7 @@ def apply_race_bonus(race):
                 bonus['Intelligence'] += 1
                 bonus['Subspecies'] = subspecies
             else:
-                print("Invalid subspecies choice. Defaulting to base Human bonuses.")
+                print("Invalid subspecies choice. Defaulting to base Elf bonuses.")
         return bonus
     elif race == 'Halflings':
         bonus = {stat: 2 for stat in ['Dexterity']}
@@ -60,7 +60,7 @@ def apply_race_bonus(race):
                 bonus['Constitution'] += 1
                 bonus['Subspecies'] = subspecies
             else:
-                print("Invalid subspecies choice. Defaulting to base Human bonuses.")
+                print("Invalid subspecies choice. Defaulting to base Halflings bonuses.")
         return bonus
     elif race == 'Dwarf':
         bonus = {stat: 2 for stat in ['Constitution']}
@@ -73,7 +73,7 @@ def apply_race_bonus(race):
                 bonus['Wisdom'] += 1
                 bonus['Subspecies'] = subspecies
             else:
-                print("Invalid subspecies choice. Defaulting to base Human bonuses.")
+                print("Invalid subspecies choice. Defaulting to base Dwarf bonuses.")
         return bonus
     else:
         return{}
