@@ -24,10 +24,8 @@ RACE_BONUSES = {
 
 STATS = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']
 
-
 def generate_stats():
     return {stat: random.randint(3, 18) for stat in STATS}
-
 
 def apply_race_bonus(race):
     race = race.lower()
@@ -50,16 +48,15 @@ def apply_race_bonus(race):
         bonus = RACE_BONUSES[race]
         subspecies = input(f"Do you want to choose a subspecies for {race} (yes/no)? ").lower()
         if subspecies == 'yes':
-            chosen_subspecies = input(f"Choose a subspecies: {', '.join(bonus.keys())}: ")
-            if chosen_subspecies.lower() in bonus:
-                return {'Subspecies': chosen_subspecies, **bonus[chosen_subspecies.lower()]}
+            chosen_subspecies = input(f"Choose a subspecies: {', '.join(bonus.keys())}: ").lower()
+            if chosen_subspecies in bonus:
+                return {'Subspecies': chosen_subspecies, **bonus[chosen_subspecies]}
             else:
                 print("Invalid subspecies choice. Defaulting to base race bonuses.")
         return {'Subspecies': ''}
     else:
         print("Invalid race.")
         return {}
-
 
 def create_character_sheet(name, character_class, race):
     stats = generate_stats()
@@ -78,7 +75,6 @@ def create_character_sheet(name, character_class, race):
         'Custom Race': race_bonus.get('Custom Race', '')
     }
 
-
 def display_character_sheet(character_sheet):
     print("\nCharacter Sheet:")
     print("Name:", character_sheet['Name'])
@@ -90,7 +86,6 @@ def display_character_sheet(character_sheet):
     for stat, value in character_sheet['Stats'].items():
         print(stat.capitalize() + ':', value)
 
-
 def main_menu():
     print("\nMenu:")
     print("1. Create Character Sheet")
@@ -99,8 +94,8 @@ def main_menu():
     choice = input("Enter your choice: ")
     return choice
 
-
 def main():
+    character_sheet = None
     while True:
         choice = main_menu()
 
@@ -113,7 +108,7 @@ def main():
             character_sheet = create_character_sheet(name, character_class, race)
             display_character_sheet(character_sheet)
         elif choice == '2':
-            if 'Name' not in character_sheet:
+            if character_sheet is None:
                 print("No character sheet created yet.")
                 continue
             display_character_sheet(character_sheet)
@@ -122,7 +117,6 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
-
 
 if __name__ == '__main__':
     main()
