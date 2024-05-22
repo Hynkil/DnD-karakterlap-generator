@@ -75,6 +75,20 @@ def create_character_sheet(name, character_class, race):
         'Custom Race': race_bonus.get('Custom Race', '')
     }
 
+def save_character_sheet(character_sheet):
+    filename = f"{character_sheet['Name']}_character_sheet.txt"
+    with open(filename, 'w') as file:
+        file.write("Character Sheet:\n")
+        file.write(f"Name: {character_sheet['Name']}\n")
+        file.write(f"Class: {character_sheet['Class']}\n")
+        file.write(f"Race: {character_sheet['Race']}\n")
+        file.write(f"Subspecies: {character_sheet.get('Subspecies', 'None')}\n")
+        file.write(f"Custom Race: {character_sheet.get('Custom Race', 'None')}\n")
+        file.write("Stats:\n")
+        for stat, value in character_sheet['Stats'].items():
+            file.write(f"{stat.capitalize()}: {value}\n")
+    print(f"Character sheet saved as {filename}")
+
 def display_character_sheet(character_sheet):
     print("\nCharacter Sheet:")
     print("Name:", character_sheet['Name'])
@@ -90,7 +104,8 @@ def main_menu():
     print("\nMenu:")
     print("1. Create Character Sheet")
     print("2. Display Character Sheet")
-    print("3. Quit")
+    print("3. Save Character Sheet")
+    print("4. Quit")
     choice = input("Enter your choice: ")
     return choice
 
@@ -113,10 +128,18 @@ def main():
                 continue
             display_character_sheet(character_sheet)
         elif choice == '3':
+            if character_sheet is None:
+                print("No character sheet created yet.")
+                continue
+            save_character_sheet(character_sheet)
+        elif choice == '4':
             print("Exiting program...")
             break
         else:
             print("Invalid choice. Please try again.")
+
+if __name__ == '__main__':
+    main()
 
 if __name__ == '__main__':
     main()
