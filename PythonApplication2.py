@@ -10,7 +10,6 @@ RACE_BONUSES = {
     'elf': {
         'high elf': {'intelligence': 1},
         'wood elf': {'wisdom': 1},
-        'dark elf': {'dexterity': 1}
     },
     'halflings': {
         'lightfoot': {'charisma': 1},
