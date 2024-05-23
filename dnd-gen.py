@@ -2,22 +2,22 @@ import random
 
 RACE_BONUSES = {
     'human': {
-        'calishite': {'charisma': 1},
-        'damarai': {'strength': 1},
-        'forest': {'dexterity': 1},
-        'mountains': {'constitution': 1}
+        'calishite': {'charisma': 2, 'strength': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
+        'damarai': {'strength': 2, 'charisma': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
+        'forest': {'dexterity': 2, 'strength': 1, 'constitution': 1, 'charisma': 1, 'intelligence': 1, 'wisdom': 1},
+        'mountains': {'constitution': 2, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1}
     },
     'elf': {
-        'high elf': {'intelligence': 1},
-        'wood elf': {'wisdom': 1},
+        'high elf': {'intelligence': 1, 'dexterity': 2},
+        'wood elf': {'wisdom': 1, 'dexterity': 2},
     },
     'halflings': {
-        'lightfoot': {'charisma': 1},
-        'stout': {'constitution': 1}
+        'lightfoot': {'charisma': 1, 'dexterity': 2},
+        'stout': {'constitution': 1, 'dexterity': 2}
     },
     'dwarf': {
-        'mountain dwarf': {'strength': 1},
-        'hill dwarf': {'wisdom': 1}
+        'mountain dwarf': {'strength': 1, 'constitution': 2},
+        'hill dwarf': {'wisdom': 1, 'constitution': 2}
     }
 }
 
