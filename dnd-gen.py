@@ -5,19 +5,23 @@ RACE_BONUSES = {
         'calishite': {'charisma': 2, 'strength': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
         'damarai': {'strength': 2, 'charisma': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
         'forest': {'dexterity': 2, 'strength': 1, 'constitution': 1, 'charisma': 1, 'intelligence': 1, 'wisdom': 1},
-        'mountains': {'constitution': 2, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1}
+        'mountains': {'constitution': 2, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1},
+        'base': {'constitution': 1, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1}
     },
     'elf': {
         'high elf': {'intelligence': 1, 'dexterity': 2},
         'wood elf': {'wisdom': 1, 'dexterity': 2},
+        'base': {'dexterity': 2}
     },
     'halflings': {
         'lightfoot': {'charisma': 1, 'dexterity': 2},
-        'stout': {'constitution': 1, 'dexterity': 2}
+        'stout': {'constitution': 1, 'dexterity': 2},
+        'base': {'dexterity': 2}
     },
     'dwarf': {
         'mountain dwarf': {'strength': 1, 'constitution': 2},
-        'hill dwarf': {'wisdom': 1, 'constitution': 2}
+        'hill dwarf': {'wisdom': 1, 'constitution': 2},
+        'base': {'constitution': 2}
     }
 }
 
@@ -44,15 +48,16 @@ def apply_race_bonus(race):
         return {'Custom Race': custom_race_name, **custom_bonuses}
 
     if race in RACE_BONUSES:
-        bonus = RACE_BONUSES[race]
-        subspecies = input(f"Do you want to choose a subspecies for {race} (yes/no)? ").lower()
-        if subspecies == 'yes':
-            chosen_subspecies = input(f"Choose a subspecies: {', '.join(bonus.keys())}: ").lower()
-            if chosen_subspecies in bonus:
-                return {'Subspecies': chosen_subspecies, **bonus[chosen_subspecies]}
+        subspecies_choice = input(f"Do you want to choose a subspecies for {race} (yes/no)? ").lower()
+        if subspecies_choice == 'yes':
+            subspecies = input(f"Choose a subspecies: {', '.join(RACE_BONUSES[race].keys())}: ").lower()
+            if subspecies in RACE_BONUSES[race]:
+                return {'Subspecies': subspecies, **RACE_BONUSES[race][subspecies]}
             else:
-                print("Invalid subspecies choice. Defaulting to base race bonuses.")
-        return {'Subspecies': ''}
+                print("Invalid subspecies choice. Applying base race bonuses.")
+        
+        base_bonuses = RACE_BONUSES[race].get('base', {})
+        return {'Subspecies': '', **base_bonuses}
     else:
         print("Invalid race.")
         return {}
@@ -97,7 +102,7 @@ def display_character_sheet(character_sheet):
     print("Custom Race:", character_sheet.get('Custom Race', 'None'))
     print("Stats:")
     for stat, value in character_sheet['Stats'].items():
-        print(stat.capitalize() + ':', value)
+        print(f"{stat.capitalize()}: {value}")
 
 def main_menu():
     print("\nMenu:")
@@ -105,8 +110,7 @@ def main_menu():
     print("2. Display Character Sheet")
     print("3. Save Character Sheet")
     print("4. Quit")
-    choice = input("Enter your choice: ")
-    return choice
+    return input("Enter your choice: ")
 
 def main():
     character_sheet = None
@@ -124,21 +128,18 @@ def main():
         elif choice == '2':
             if character_sheet is None:
                 print("No character sheet created yet.")
-                continue
-            display_character_sheet(character_sheet)
+            else:
+                display_character_sheet(character_sheet)
         elif choice == '3':
             if character_sheet is None:
                 print("No character sheet created yet.")
-                continue
-            save_character_sheet(character_sheet)
+            else:
+                save_character_sheet(character_sheet)
         elif choice == '4':
             print("Exiting program...")
             break
         else:
             print("Invalid choice. Please try again.")
-
-if __name__ == '__main__':
-    main()
 
 if __name__ == '__main__':
     main()
