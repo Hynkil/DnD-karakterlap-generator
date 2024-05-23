@@ -24,7 +24,6 @@ def apply_race_bonus(race):
         'Elf': {
             'High Elf': {'Intelligence': 1},
             'Wood Elf': {'Wisdom': 1},
-            'Dark Elf': {'Dexterity': 1}
         }
     }
 
