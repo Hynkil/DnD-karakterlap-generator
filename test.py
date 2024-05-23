@@ -5,7 +5,8 @@ RACE_BONUSES = {
         'calishite': {'charisma': 2, 'strength': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
         'damarai': {'strength': 2, 'charisma': 1, 'dexterity': 1, 'constitution': 1, 'intelligence': 1, 'wisdom': 1},
         'forest': {'dexterity': 2, 'strength': 1, 'constitution': 1, 'charisma': 1, 'intelligence': 1, 'wisdom': 1},
-        'mountains': {'constitution': 2, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1}
+        'mountains': {'constitution': 2, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1},
+        'base': {'constitution': 1, 'charisma': 1, 'strength': 1, 'dexterity': 1, 'intelligence': 1, 'wisdom': 1}
     },
     'elf': {
         'high elf': {'intelligence': 1, 'dexterity': 2},
